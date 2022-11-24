@@ -1,13 +1,13 @@
+
 //Global Variables
 int appWidth, appHeight;
 Boolean start=false, noNowReallyStart=false;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
-//
-void setup()
-{
-  //Display & Orientation Algorithms not consider yet
+color quitButtonColour, yellow=#FFFF00 , purple=#FF00FF ;
+//Display & Orientation Algorithms not consider yet
   size(400, 300); //Landscape
   //fullScreen(); //displayWidth, displayHeight
+   displayorientation();
   appWidth = width;
   appHeight = height;
   //
@@ -28,15 +28,15 @@ void draw ()
     //Hover Over Feature
     println("X-value", quitButtonX, mouseX ,quitButtonX+quitButtonWidth );
     println("Y-value", quitButtonY, mouseY ,quitButtonY+quitButtonHeight ); 
-    /*
-    if () {
-      quitButtonColour = yellow;
+    //
+    //Quit Button Hover Over Feature
+    if (mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight) {
+      quitButtonColour = yellow; //Remember Knight Mode
     } else {
-      quitButtonColour = purple;
+      quitButtonColour = purple; //Remember Day Mode
     } //End Quit Button Colour
     //
     fill(quitButtonColour); 
-    */
     rect( quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight ); //Quit Button with Hoverover
   }
 } //End draw
@@ -58,6 +58,9 @@ void mousePressed()
   //OS Level Start Button
   start = true;
   println("To Start, Press the Space Bar");
+  //
+  //Quit Button: Logical Rectangle, see println in draw()
+  if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) exit();
   //
 } //End mousePressed
 //
